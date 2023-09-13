@@ -32,13 +32,14 @@ class GlobalAveragePooling2D(layers.GlobalAveragePooling2D):
 
     def get_config(self):
         config = super(GlobalAveragePooling2D, self).get_config()
-        config['keep_dim'] = self.keep_dims
+        config['keep_dims'] = self.keep_dims
         return config
 
 
 class Concatenate(layers.Concatenate):
-    def __init__(self, out_size=None, axis=-1, name=None):
+    def __init__(self, out_size=None, axis=-1, name=None, **kwargs):
         super(Concatenate, self).__init__(axis=axis, name=name)
+        super(Concatenate, self).__init__(**kwargs)
         self.out_size = out_size
 
     def call(self, inputs):
